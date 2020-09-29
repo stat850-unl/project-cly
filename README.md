@@ -21,6 +21,8 @@ instead of the project proposal.
 Provide a link to your dataset here, and a description of the variables
 in the data set.
 
+https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_csv_2020-04-29.zip
+
 ## Potential Topics to Explore Using the Data Set
 
 Describe avenues you might explore using the data
