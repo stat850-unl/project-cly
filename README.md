@@ -1,6 +1,6 @@
 Stat 850 Project Description
 ================
-Firstname Lastname, Firstname Lastname, …
+Constanza Paz Avello Lefno, Yutong Liu, Lin Zhao
 
 ## Instructions
 
@@ -30,3 +30,6 @@ Describe avenues you might explore using the data
 ## Group Members
 
 List all of the project contributors here.
+Constanza Paz Avello Lefno
+Yutong Liu
+Lin Zhao
