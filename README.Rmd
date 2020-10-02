@@ -1,6 +1,6 @@
 ---
 title: "Stat 850 Project Description"
-author: "Firstname Lastname, Firstname Lastname, ..."
+author: "Constanza Paz Avello Lefno, Yutong Liu, Lin Zhao"
 output: github_document
 ---
 
@@ -34,5 +34,7 @@ Provide a link to your dataset here, and a description of the variables in the d
 Describe avenues you might explore using the data
 
 ## Group Members
-List all of the project contributors here.
+Constanza Paz Avello Lefno
+Yutong Liu
+Lin Zhao
 
