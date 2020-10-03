@@ -14,14 +14,67 @@ properly display as part of your github repository.
 
 Once you have received feedback on your project proposal (via Canvas)
 you may alter this README so that it describes your final project
-instead of the project proposal.
+instead of the project
+proposal.
 
 ## Data Set
 
-Provide a link to your dataset here, and a description of the variables
-in the data set.
+[FoodData](https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2020-04-29.zip)
+is an integrated dataset that provides food component and nutrient
+information.
 
-https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_csv_2020-04-29.zip
+Three tables from the dataset list are chosen for this project:
+
+  - food\_component.csv
+  - food\_nutrient.csv
+  - nutrient.csv
+
+By combining three datasets together and selecting several variables, a
+new dataset called **food\_dataset** is generated for further analysis.
+
+Description of variables:
+
+  - component\_name
+    
+    *The kind of component, e.g. bone*
+
+  - pct\_weight
+    
+    *The weight of the component as a percentage of the total weight of
+    the food*
+
+  - is\_refuse
+    
+    *Whether the component is refuse, i.e. not edible*
+
+  - gram\_weight
+    
+    *The weight of the component in grams*
+
+  - nutrient\_amount
+    
+    *Amount of the nutrient per 100g of food. Specified in unit defined
+    in the nutrient table.*
+
+  - min
+    
+    *The minimum amount*
+
+  - max
+    
+    *The maximum amount*
+
+  - median
+    
+    *The median amount*
+
+  - nutrient\_name
+    
+    *Name of the nutrient*
+
+  - nutrient\_unit
+    
+    *The standard unit of measure for the nutrient (per 100g of food)*
 
 ## Potential Topics to Explore Using the Data Set
 
@@ -29,10 +82,11 @@ Describe avenues you might explore using the data
 
 ## Group Members
 
-List all of the project contributors here.
+  - Constanza Paz Avello Lefno
+  - Yutong Liu
+  - Lin Zhao
 
-Constanza Paz Avello Lefno
+## Reference
 
-Yutong Liu
-
-Lin Zhao
+U.S. Department of Agriculture, Agricultural Research Service. FoodData
+Central, 2019. fdc.nal.usda.gov.
