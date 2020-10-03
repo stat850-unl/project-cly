@@ -29,9 +29,9 @@ Once you have received feedback on your project proposal (via Canvas) you may al
 
 ## Data Set
 
-[FoodData](https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2020-04-29.zip) is an integrated dataset that provides food component and nutrient information.
+[FoodData](https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2020-04-29.zip) is an integrated database that provides food component and nutrient information.
 
-Three tables from the dataset list are chosen for this project:
+Three tables from the database are chosen for this project:
 
 * food_component.csv
 * food_nutrient.csv
@@ -39,51 +39,33 @@ Three tables from the dataset list are chosen for this project:
 
 By combining three datasets together and selecting several variables, a new dataset called **food_dataset** is generated for further analysis.
 
-Description of variables:
+Description of ten variables:
 
-* component_name
-  
-   _The kind of component, e.g. bone_
+* component_name - _The kind of component, e.g. bone_
    
-* pct_weight
-  
-   _The weight of the component as a percentage of the total weight of the food_
+* pct_weight - _The weight of the component as a percentage of the total weight of the food_
    
-* is_refuse
-  
-   _Whether the component is refuse, i.e. not edible_
+* is_refuse - _Whether the component is refuse, i.e. not edible_
 
-* gram_weight
-  
-   _The weight of the component in grams_
+* gram_weight - _The weight of the component in grams_
 
-* nutrient_amount
-  
-   _Amount of the nutrient per 100g of food. Specified in unit defined in the nutrient table._
+* nutrient_amount - _Amount of the nutrient per 100g of food. Specified in unit defined in the nutrient table._
    
-* min
-  
-   _The minimum amount_
+* min - _The minimum amount_
 
-* max
-  
-   _The maximum amount_
+* max - _The maximum amount_
 
-* median
-  
-   _The median amount_
+* median - _The median amount_
 
-* nutrient_name
-  
-   _Name of the nutrient_
+* nutrient_name - _Name of the nutrient_
 
-* nutrient_unit
-  
-   _The standard unit of measure for the nutrient (per 100g of food)_
+* nutrient_unit - _The standard unit of measure for the nutrient (per 100g of food)_
 
 
 ## Potential Topics to Explore Using the Data Set
 Describe avenues you might explore using the data
+
+There are several tables in the original database, we only take three of them and merge the variables together by **fdc_id**, which is a unique permanent identifier of a food across tables. We would like to discover potential recycling of non-edible food component which has relatively higher nutrient.
 
 ## Group Members
 

@@ -20,10 +20,10 @@ proposal.
 ## Data Set
 
 [FoodData](https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2020-04-29.zip)
-is an integrated dataset that provides food component and nutrient
+is an integrated database that provides food component and nutrient
 information.
 
-Three tables from the dataset list are chosen for this project:
+Three tables from the database are chosen for this project:
 
   - food\_component.csv
   - food\_nutrient.csv
@@ -34,51 +34,38 @@ new dataset called **food\_dataset** is generated for further analysis.
 
 Description of variables:
 
-  - component\_name
-    
-    *The kind of component, e.g. bone*
+  - component\_name - *The kind of component, e.g. bone*
 
-  - pct\_weight
-    
-    *The weight of the component as a percentage of the total weight of
-    the food*
+  - pct\_weight - *The weight of the component as a percentage of the
+    total weight of the food*
 
-  - is\_refuse
-    
-    *Whether the component is refuse, i.e. not edible*
+  - is\_refuse - *Whether the component is refuse, i.e. not edible*
 
-  - gram\_weight
-    
-    *The weight of the component in grams*
+  - gram\_weight - *The weight of the component in grams*
 
-  - nutrient\_amount
-    
-    *Amount of the nutrient per 100g of food. Specified in unit defined
-    in the nutrient table.*
+  - nutrient\_amount - *Amount of the nutrient per 100g of food.
+    Specified in unit defined in the nutrient table.*
 
-  - min
-    
-    *The minimum amount*
+  - min - *The minimum amount*
 
-  - max
-    
-    *The maximum amount*
+  - max - *The maximum amount*
 
-  - median
-    
-    *The median amount*
+  - median - *The median amount*
 
-  - nutrient\_name
-    
-    *Name of the nutrient*
+  - nutrient\_name - *Name of the nutrient*
 
-  - nutrient\_unit
-    
-    *The standard unit of measure for the nutrient (per 100g of food)*
+  - nutrient\_unit - *The standard unit of measure for the nutrient (per
+    100g of food)*
 
 ## Potential Topics to Explore Using the Data Set
 
 Describe avenues you might explore using the data
+
+There are several tables in the original database, we only take three of
+them and merge the variables together by **fdc\_id**, which is a unique
+permanent identifier of a food across tables. We would like to discover
+potential recycling of non-edible food component which has relatively
+higher nutrient.
 
 ## Group Members
 
