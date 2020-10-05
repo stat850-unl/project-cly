@@ -46,6 +46,8 @@ Description of variables:
 
   - gram\_weight - *The weight of the component in grams*
 
+  - nutrient\_name - *Name of the nutrient*
+
   - nutrient\_amount - *Amount of the nutrient per 100g of food.
     Specified in unit defined in the nutrient table.*
 
@@ -54,8 +56,6 @@ Description of variables:
   - max - *The maximum amount*
 
   - median - *The median amount*
-
-  - nutrient\_name - *Name of the nutrient*
 
   - nutrient\_unit - *The standard unit of measure for the nutrient (per
     100g of food)*
@@ -68,35 +68,29 @@ There are several tables in the original database, we only take three of
 them and merge the variables together by **fdc\_id**, which is a unique
 permanent identifier of a food across tables. We would like to discover
 potential recycling of non-edible food component which has relatively
-higher nutrient.
+higher nutrient. Here are some specific topics that we might explore
+using the data:
 
-1.  Explore the number of food components that are refuse or not and
-    look for which food components are refuse.
+1.  Having a table of food components that are discarded and looking for
+    potential recyclable components.
 
-2.  We could compare the pct\_weight and weight among food components
-    that are refused and look for the higher pct\_weight and weight
-    components, which are more potential recycling.
+2.  Manipulating data to have unified unit for nutrient amount, focusing
+    on the food components that are defined as refuse and calculate the
+    exact amount of each nutrient grouped by food component. Discover
+    potential recyclable food components with higher pct\_weight and
+    higher nutrient proportion by sorting data from highest nutrient
+    proportion to the lowest.
 
-3.  Adjusted the nutrient amount with the same unit, such as mg.
+3.  Once we find some nutrients with extreme content, we could plot the
+    minimum, maximum, and median amount of these nutrients. Looking for
+    which discarded food component is suitable for extract some specific
+    nutrients, such as DHA.
 
-4.  Explore the amount of each nutrient grouped by food component,
-    focusing on the food components that are defined as refuse.
-
-5.  If we find some nutrients with extreme content, we could look at the
-    minimum, maximum, and median amount of these nutrients.
-
-6.  Calculate the exact amount of each nutrient for each food component.
-
-7.  Explore the higher amount of specific nutrients in the food
-    component. Looking for which food component is suitable for an
-    exacting specific nutrient, such as DHA.
-
-Overall, we want to look for a higher amount of food components that are
-refuse with a higher amount of beneficial nutrients.
-
-We would like to find these potential recycling of non-edible food
-components by exploring the total amount of components or the amount of
-specific nutrients in the food component.
+Overall, we are looking for a higher amount of discarded/non-edible food
+components with a higher amount of beneficial nutrients. We would like
+to find these potential recyclable food components by exploring the
+total amount of components and the amount of specific nutrients in the
+food component.
 
 ## Group Members
 
