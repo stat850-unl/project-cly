@@ -1,6 +1,6 @@
 ---
 title: "Stat 850 Project Description"
-author: "Constanza Paz Avello Lefno, Yutong Liu, Lin Zhao"
+author: "Lin Zhao"
 output: github_document
 ---
 
@@ -79,8 +79,6 @@ Overall, we are looking for a higher amount of discarded/non-edible food compone
 
 ## Group Members
 
-  - Constanza Paz Avello Lefno
-  - Yutong Liu
   - Lin Zhao
 
 ## Reference

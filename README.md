@@ -1,6 +1,6 @@
 Stat 850 Project Description
 ================
-Constanza Paz Avello Lefno, Yutong Liu, Lin Zhao
+Lin Zhao
 
 ## Instructions
 
@@ -94,8 +94,6 @@ food component.
 
 ## Group Members
 
-  - Constanza Paz Avello Lefno
-  - Yutong Liu
   - Lin Zhao
 
 ## Reference
