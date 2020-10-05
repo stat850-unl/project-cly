@@ -1,6 +1,6 @@
 Stat 850 Project Description
 ================
-Lin Zhao
+Lin Zhao Yutong Liu
 
 ## Instructions
 
@@ -19,8 +19,7 @@ instead of the project proposal.
 ## Data Set
 
 Provide a link to your dataset here, and a description of the variables
-in the data
-set.
+in the data set.
 
 [FoodData](https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2020-04-29.zip)
 is an integrated database that provides food component and nutrient
@@ -95,6 +94,7 @@ food component.
 ## Group Members
 
   - Lin Zhao
+  - Yutong Liu
 
 ## Reference
 

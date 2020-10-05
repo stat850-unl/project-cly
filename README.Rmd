@@ -1,6 +1,6 @@
 ---
 title: "Stat 850 Project Description"
-author: "Lin Zhao"
+author: "Lin Zhao Yutong Liu"
 output: github_document
 ---
 
@@ -80,6 +80,7 @@ Overall, we are looking for a higher amount of discarded/non-edible food compone
 ## Group Members
 
   - Lin Zhao
+  - Yutong Liu
 
 ## Reference
 
