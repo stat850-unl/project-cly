@@ -57,7 +57,7 @@ if ( food_dataset$nutrient_unit == 'MG') {
 unit<- sub("MG",  "G", food_dataset$nutrient_unit) 
 unit<- sub("UG",  "G", unit)
 unit<- sub("KCAL",  "kJ", unit)
-food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(., "nutrient_name(nutrient_unit)", nutrient_name, nutrient_unit)
+food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(., "nutrient_name_nutrient_unit", nutrient_name, nutrient_unit)
 ```
 
 ```{r}
