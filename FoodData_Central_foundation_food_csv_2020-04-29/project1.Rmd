@@ -1,3 +1,17 @@
+---
+title: "Untitled"
+author: "Yutong Liu"
+date: "11/6/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data exploration
+
+```{r cars}
 library(dplyr)
 library(tidyr)
 food_component <- read.csv("food_component.csv")
@@ -10,14 +24,26 @@ col_names <- c("component_name","pct_weight","is_refuse","gram_weight","nutrient
 colnames(food_dataset) <- col_names
 food_dataset <- food_dataset[,c(1,2,3,4,9,5,6,7,8,10)]
 food_dataset <- food_dataset %>% mutate(nutrition_amount_in_component= nutrient_amount/100*gram_weight)  
-food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
+```
+
+```{r}
 library(ggplot2)
 ggplot(food_dataset)+ geom_bar (aes(x= nutrient_unit, fill = nutrient_unit))
 ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name ))
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
 ggplot(food_dataset)+ geom_bar (aes(x= component_name, fill =component_name ))
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
+```
 
+
+
+## Unit Adjustment
+
+Mass unit adjustment: 1 g = 1000 mg = 1000000 ug
+
+Energy unit adjustment: 1 KCAL = 4.184 KJ
+
+```{r}
 if ( food_dataset$nutrient_unit == 'MG') {
   food_dataset$nutrition_amount_in_component = food_dataset$nutrition_amount_in_component/ 1000
 } else if ( food_dataset$nutrient_unit == 'UG') { 
@@ -25,12 +51,16 @@ if ( food_dataset$nutrient_unit == 'MG') {
 } else if ( food_dataset$nutrient_unit == 'KCAL') {
   food_dataset$nutrition_amount_in_component = food_dataset$nutrition_amount_in_component* 4.184
 }
+```
 
+```{r}
 unit<- sub("MG",  "G", food_dataset$nutrient_unit) 
 unit<- sub("UG",  "G", unit)
 unit<- sub("KCAL",  "kJ", unit)
 food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(., "nutrient_name(nutrient_unit)", nutrient_name, nutrient_unit)
+```
 
+```{r}
 ui <- fluidPage(
   
   titlePanel("Nutrient in Refused Component"),
@@ -68,4 +98,7 @@ server <- function(input, output) {
   })
 }
 shinyApp(ui, server)
+
+
+```
 
