@@ -57,7 +57,6 @@ server <- function(input, output) {
     ggplot(data = nutrient_subset(), aes(x = component_name, y = nutrition_amount_in_component)) +
       xlab("component name") +
       ylab("nutrient amount") +
-      #scale_y_discrete(limits = as.character(input$ingredient))+
       geom_col() +
       theme_bw() +
       coord_flip() +
