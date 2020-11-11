@@ -26,15 +26,18 @@ food_dataset <- food_dataset[,c(1,2,3,4,9,5,6,7,8,10)]
 food_dataset <- food_dataset %>% mutate(nutrition_amount_in_component= nutrient_amount/100*gram_weight)  
 ```
 
+Calculate the exact nutrition amount in each component.
+
 ```{r}
 library(ggplot2)
 ggplot(food_dataset)+ geom_bar (aes(x= nutrient_unit, fill = nutrient_unit))
 ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name ))
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
 ggplot(food_dataset)+ geom_bar (aes(x= component_name, fill =component_name )) + theme(axis.text.x = element_text(angle=45, size = 5))
-food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
 ```
+Making the plot to look at the nutrient unit, finding the better way to do the unit adjustment.
 
+Looking at the data composition by categorizing the refused and non-refused food components, and the specific component occupation ratio in these two categories, and then filtering the refused food component for further analysis
 
 
 ## Unit Adjustment
@@ -53,6 +56,9 @@ if ( food_dataset$nutrient_unit == 'MG') {
 }
 ```
 
+Adjusting the mass unit to G, the energy unit to KJ, therefore, there exists mass unit-G, energy unit-KJ and vitamin unit-IU. 
+
+
 ```{r}
 unit<- sub("MG",  "G", food_dataset$nutrient_unit) 
 unit<- sub("UG",  "G", unit)
@@ -60,7 +66,11 @@ unit<- sub("KCAL",  "kJ", unit)
 food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(., "nutrient_name_nutrient_unit", nutrient_name, nutrient_unit)
 ```
 
-Create vitaminE dataset, which component is best for extract vitamin E?
+Combine the nutrient name and unit together, so when the audience use the interactive graphics, they will know the exact quantity of nutrient and compare the nutrient amount in different component.
+
+The interactive graphics saved in 'explore_table.R' file show the total and weighted nutrient amount for each component.
+
+We take Vitamin E as an example, create vitamin E dataset, looking for which component is best for extract vitamin E.
 
 ```{r}
 library(tidyverse)
@@ -75,7 +85,6 @@ ggplot(vitaminE) +
   theme(axis.text.x = element_text(angle=45, size = 8))
 
 ```
-
 
 
 
