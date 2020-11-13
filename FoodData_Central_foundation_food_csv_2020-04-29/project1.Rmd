@@ -30,11 +30,13 @@ Calculate the exact nutrition amount in each component.
 
 ```{r}
 library(ggplot2)
-ggplot(food_dataset)+ geom_bar (aes(x= nutrient_unit, fill = nutrient_unit))
-ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name ))
+ggplot(food_dataset)+ geom_bar (aes(x= nutrient_unit, fill = nutrient_unit, weight = nutrition_amount_in_component))
+ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
-ggplot(food_dataset)+ geom_bar (aes(x= component_name, fill =component_name )) + theme(axis.text.x = element_text(angle=45, size = 5))
+ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
 ```
+
+> Note that using the weight argument results in *dramatically* different charts.
 Making the plot to look at the nutrient unit, finding the better way to do the unit adjustment.
 
 Looking at the data composition by categorizing the refused and non-refused food components, and the specific component occupation ratio in these two categories, and then filtering the refused food component for further analysis
