@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
 ```
 
 ## Data exploration
@@ -31,13 +31,25 @@ Calculate the exact nutrition amount in each component.
 ```{r}
 library(ggplot2)
 ggplot(food_dataset)+ geom_bar (aes(x= nutrient_unit, fill = nutrient_unit, weight = nutrition_amount_in_component))
+```
+
+> Explain what this graph shows before you move on to another graph!
+
+```{r}
 ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
+```
+
+> More explanation, maybe even motivate the next graph before you make it.
+
+```{r}
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
 ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
 ```
 
 > Note that using the weight argument results in *dramatically* different charts.
 Making the plot to look at the nutrient unit, finding the better way to do the unit adjustment.
+
+> Also, you should be explaining each graph. Tell a story with your data! What are you supposed to be seeing?
 
 Looking at the data composition by categorizing the refused and non-refused food components, and the specific component occupation ratio in these two categories, and then filtering the refused food component for further analysis
 
