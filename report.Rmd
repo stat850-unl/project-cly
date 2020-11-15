@@ -1,0 +1,127 @@
+---
+title: |
+    | STAT 850 Final Project
+    | *** OUR PROJECT TITLE ***
+author: 'Yutong Liu, Lin Zhao'
+email: 'yutong.liu\@huskers\.unl\.edu, lzhao12\@huskers\.unl\.edu'
+abstract: |
+    This is our abstract
+#bibliography: references.bib
+#link-citations: yes
+output: 
+    pdf_document:
+        template: jdf-template.pandoc
+        fig_caption: true
+        citation_package: biblatex
+        keep_tex: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(tidyverse)
+```
+
+
+
+# Introduction
+
+Introduction goes here
+
+# Dataset Description
+
+[FoodData](https://fdc.nal.usda.gov/download-datasets.html) is an integrated database that provides food component and nutrient information. There are several tables in the original database, we only take three of them and merge the variables together by **fdc_id**, which is a unique permanent identifier of a food across tables. We would like to discover potential recycling of non-edible food component which has relatively higher nutrient.
+
+Three tables from the database are chosen for this project:
+
+  * food_component.csv
+  * food_nutrient.csv
+  * nutrient.csv
+  
+By combining three datasets together and selecting several variables, a new dataset called **food_dataset** is generated for further analysis.
+
+Description of variables:
+
+*component_name* - The kind of component, e.g. bone
+
+*pct_weight* - The weight of the component as a percentage of the total weight of the food
+
+*is_refuse* - Whether the component is refuse, i.e. not edible
+
+*gram_weight* - The weight of the component in grams
+  
+*nutrient_name* - Name of the nutrient
+
+*nutrient_amount* - Amount of the nutrient per 100g of food. Specified in unit defined in the nutrient table.
+
+*min* - The minimum amount
+
+*max* - The maximum amount
+
+*median* - The median amount
+
+*nutrient_unit* - The standard unit of measure for the nutrient (per 100g of food)
+
+*nutrition_amount_in_component* - The true value of nutrition amount in component
+  
+```{r echo = F, message=F, warning=F}
+food_component <- read.csv("datasets/food_component.csv")
+food_nutrient <- read.csv("datasets/food_nutrient.csv")
+nutrient <- read.csv("datasets/nutrient.csv")
+food_component_nutrient <- inner_join(food_component,food_nutrient,by = "fdc_id") # This results in 6300 observations of 18 variables
+food_component_nutrient <- inner_join(food_component_nutrient, nutrient, by= c("nutrient_id"="id") ) # add the nutrient name instead of nutrient id
+food_dataset <- food_component_nutrient[,c(3,4,5,6,11,14,15,16,19,20)] # the "food nutrient of food component" analysis
+col_names <- c("component_name","pct_weight","is_refuse","gram_weight","nutrient_amount","min","max","median","nutrient_name","nutrient_unit")
+colnames(food_dataset) <- col_names
+food_dataset <- food_dataset[,c(1,2,3,4,9,5,6,7,8,10)]
+food_dataset <- food_dataset %>% mutate(nutrition_amount_in_component= nutrient_amount/100*(gram_weight/pct_weight))  
+```
+
+# Results
+
+## Refuse food component
+
+The variable *is_refuse* in original dataset has two levels: Y (is refuse) and N (not refuse).
+Therefore, we can assign all components into 2 groups: one is refuse, another is not refuse. 
+Since our ultimate goal is to recycle the refuse components and explore the potential value of them, we plot the data by variable *is_refuse* to see what kind of component is refuse. 
+
+```{r message = F, warning = F}
+ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
+```
+
+The bar chart above shows the detailed information of whether a component is refuse or not. The left bar is not refuse, contains components such as *separable lean*, *total gram weight*, *handling loss*, *edible portion*, *lip lean*. On the right-side bar,the refuse components are mainly *bone and connective tissue*, *connective tissue*, *external fat*, *seam fat*, *bone and cartilage*, *lip fat*, *skin and separable fat*. 
+
+It is easy to see that all of tissues and fats are refuses. Fat, tissue and cartilage are components we can recycle and extract nutrition from. We will only work on refuse components from this point.
+
+## Adjust units of nutrition amount
+
+In order to run statistical analysis on the nutrition amount, it is necessary to have uniform units for all components. First of all, we would like to know how many units exist in dataset and which one is the most commonly used.
+
+
+```{r message = F, warning = F}
+food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
+ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
+```
+
+We can see from the plot above that most common unit used for nutrition amount in dataset is MG and KJ. We will adjust the mass unit to G, the energy unit to KJ. After adjustment, there exists mass unit *G*, energy unit *KJ* and vitamin unit *IU*. 
+
+Mass unit adjustment: 1 g = 1000 mg = 1000000 ug
+
+Energy unit adjustment: 1 KCAL = 4.184 KJ
+
+```{r message = F, warning=F}
+unit<- sub("MG",  "G", food_dataset$nutrient_unit) 
+unit<- sub("UG",  "G", unit)
+unit<- sub("KCAL",  "kJ", unit)
+food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(., "nutrient_name_nutrient_unit", nutrient_name, nutrient_unit)
+```
+
+
+
+# Conclusion
+
+
+
+
