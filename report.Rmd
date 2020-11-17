@@ -87,7 +87,7 @@ The variable *is_refuse* in original dataset has two levels: Y (is refuse) and N
 Therefore, we can assign all components into 2 groups: one is refuse, another is not refuse. 
 Since our ultimate goal is to recycle the refuse components and explore the potential value of them, we plot the data by variable *is_refuse* to see what kind of component is refuse. 
 
-```{r message = F, warning = F}
+```{r message = F, warning = F, out.width="0.5\\textwidth", out.height="0.5\\textwidth", fig.align="center"}
 ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
 ```
 
@@ -100,7 +100,7 @@ It is easy to see that all of tissues and fats are refuses. Fat, tissue and cart
 In order to run statistical analysis on the nutrition amount, it is necessary to have uniform units for all components. First of all, we would like to know how many units exist in dataset and which one is the most commonly used.
 
 
-```{r message = F, warning = F}
+```{r message = F, warning = F, out.width="0.5\\textwidth", out.height="0.5\\textwidth", fig.align="center"}
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
 ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
 ```
