@@ -36,9 +36,7 @@ Introduction goes here
 Three tables from the database are chosen for this project, one is *food_component.csv*, which contains several different constituent parts of a food like bone, tissues. This table provides information about components, including their weight and whether it is refuse or not. The second table is *food_nutrient.csv*, which provides nutrient value of a food. The third table is *nutrient.csv*. Nutrient is defined as the chemical constituent of a food (e.g. calcium, vitamin E) officially recognized as essential to human health.
 Nutrient table contains nutrient names, units and a unique code identifying a nutrient.
 
-By combining three datasets together and selecting several variables, a new dataset called **food_dataset** is generated for further analysis.
-
-Description of variables in *food_dataset*:
+By combining three datasets together and selecting several variables, a new dataset called **food_dataset** is generated for further analysis. Description of variables in *food_dataset*:
 
 *component_name* - The kind of component, e.g. bone
 
@@ -116,7 +114,7 @@ food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(
 
 ## Interactive graphics
 
-
+Interactive graphics interpretation goes here.
 
 ## Potential recyclable refuse
 
@@ -146,11 +144,11 @@ ggplot(vitaminE) +
   xlab("Component Name") + ylab("Nutrient Amount (G)")
 ```
 
-We can see that the fats generally contains higher amount of Vitamin E.
+There are two sources of Vitamin E, one is bone/tissue, including *Bone and cartilage*, *Bone and connective tissue*, *Connective tissue*. Another is fat, including *external fat*, *lip fat*, *seam fat* and *skin and separable fat*. We can see that the fats generally contains higher amount of Vitamin E. In order to statistically test the visual evidence, we run a t-test on components. The null hypothesis is there is no significant difference between *bone/tissue* and *fat*. The test result shows that the p-value is 0.8238, we fail to reject the null hypothesis and conclude that there is no difference between *bone/tissue* and *fat* components.
 
+Therefore, we can obtain Vitamin E from bone, tissue and fat components. It would be resonable to select any component that has minimum cost.
 
-
-```{r}
+```{r message = F, warning = F, echo=F, include=F}
 vitaminE$component_name <- c("bt","bt","bt","fat","fat","fat","fat")
 t.test(vitaminE$nutrition_amount_in_component ~ vitaminE$component_name)
 ```
@@ -158,6 +156,7 @@ t.test(vitaminE$nutrition_amount_in_component ~ vitaminE$component_name)
 
 # Conclusion
 
+Conclusion goes here.
 
 # References
 
