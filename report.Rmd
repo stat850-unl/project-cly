@@ -24,6 +24,15 @@ library(ggplot2)
 library(tidyverse)
 ```
 
+```{r load-sas-libraries, echo = F, message = F, warning = F}
+library(SASmarkdown)
+sas_enginesetup(sashtml=sashtml)
+sasexe <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
+sasopts <- "-nosplash -ls 75"
+# Linux options (for grading, please leave this in!)
+# sasexe <- "/usr/local/SASHome/SASFoundation/9.4/bin/sas_en"
+# sasopts <- "-ls 75"
+```
 
 
 # Introduction
@@ -34,15 +43,12 @@ Introduction goes here
 
 [FoodData](https://fdc.nal.usda.gov/download-datasets.html) is an integrated database that provides food component and nutrient information. There are several tables in the original database, we only take three of them and merge the variables together by **fdc_id**, which is a unique permanent identifier of a food across tables. We would like to discover potential recycling of non-edible food component which has relatively higher nutrient.
 
-Three tables from the database are chosen for this project:
+Three tables from the database are chosen for this project, one is *food_component.csv*, which contains several different constituent parts of a food like bone, tissues. This table provides information about components, including their weight and whether it is refuse or not. The second table is *food_nutrient.csv*, which provides nutrient value of a food. The third table is *nutrient.csv*. Nutrient is defined as the chemical constituent of a food (e.g. calcium, vitamin E) officially recognized as essential to human health.
+Nutrient table contains nutrient names, units and a unique code identifying a nutrient.
 
-  * food_component.csv
-  * food_nutrient.csv
-  * nutrient.csv
-  
 By combining three datasets together and selecting several variables, a new dataset called **food_dataset** is generated for further analysis.
 
-Description of variables:
+Description of variables in *food_dataset*:
 
 *component_name* - The kind of component, e.g. bone
 
@@ -118,10 +124,68 @@ unit<- sub("KCAL",  "kJ", unit)
 food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(., "nutrient_name_nutrient_unit", nutrient_name, nutrient_unit)
 ```
 
+## Interactive graphics
+
+
+
+## Potential recyclable refuse
+
+Vitamins are substances that are needed by human body to grow and develop. Vitamin E an antioxidant, which plays a role in human immune system and metabolic processes. It is a fat-soluble vitamin with several forms, but alpha-tocopherol is the only one used by the human body.  Alpha-tocopherol is also the form that examined in this datset. 
+
+The Recommended Dietary Allowance (RDA) for vitamin E for males and females ages 14 years and older is 15 mg daily, including women who are pregnant. Lactating women need slightly more at 19 mg daily.
+
+The plot below shows the vitamin E content in several refuse components. 
+
+```{r message = F, warning = F, fig.width=12, out.width="0.9\\textwidth", out.height="0.7\\textwidth", fig.align="center"}
+vitaminE <- food_dataset %>% filter(str_detect(nutrient_name_nutrient_unit,"Vitamin E")) %>%
+  group_by(component_name) %>% 
+  summarize(pct_weight = sum(pct_weight),  gram_weight = sum(gram_weight),
+            nutrient_amount = sum(nutrient_amount),
+            median = sum(median),
+            nutrition_amount_in_component = sum(nutrition_amount_in_component))
+ggplot(vitaminE) + 
+  geom_bar (aes(x= component_name, y = nutrient_amount/gram_weight), stat = "identity") +
+  scale_x_discrete(labels = c('Bone and \n cartilage',
+                              'Bone and \n connective tissue',
+                              'Connective \n tissue',
+                              'External \n fat',
+                              'Lip fat',
+                              'Seam fat',
+                              'Skin and \n separable fat')) +
+  theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) +
+  xlab("Component Name") + ylab("Nutrient Amount (G)")
+```
+
+We can see that the fats generally contains higher amount of Vitamin E.
+
+```{r, engine="sashtml", engine.path=sasexe, engine.opts=sasopts}
+data vitamin;
+   input component amount;
+   datalines;
+bt 0.001768210
+bt 0.036890526
+bt 0.014144737
+fat 0.036195628
+fat 0.014054054
+fat 0.030688889
+fat 0.001758621
+;
+proc glimmix data = vitamin;
+class component;
+model amount = component;
+run;
+```
+
+
+
 
 
 # Conclusion
 
 
+# References
 
+Benefits of Vitamin E: [https://medlineplus.gov/vitamine.html](https://medlineplus.gov/vitamine.html)
+
+Recomanded daily Vitamin E amounts: [https://www.hsph.harvard.edu/nutritionsource/vitamin-e/](https://www.hsph.harvard.edu/nutritionsource/vitamin-e/)
 
