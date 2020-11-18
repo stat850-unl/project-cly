@@ -24,16 +24,6 @@ library(ggplot2)
 library(tidyverse)
 ```
 
-```{r load-sas-libraries, echo = F, message = F, warning = F}
-library(SASmarkdown)
-sas_enginesetup(sashtml=sashtml)
-sasexe <- "C:/Program Files/SASHome/SASFoundation/9.4/sas.exe"
-sasopts <- "-nosplash -ls 75"
-# Linux options (for grading, please leave this in!)
-# sasexe <- "/usr/local/SASHome/SASFoundation/9.4/bin/sas_en"
-# sasopts <- "-ls 75"
-```
-
 
 # Introduction
 
@@ -158,26 +148,12 @@ ggplot(vitaminE) +
 
 We can see that the fats generally contains higher amount of Vitamin E.
 
-```{r, engine="sashtml", engine.path=sasexe, engine.opts=sasopts}
-data vitamin;
-   input component amount;
-   datalines;
-bt 0.001768210
-bt 0.036890526
-bt 0.014144737
-fat 0.036195628
-fat 0.014054054
-fat 0.030688889
-fat 0.001758621
-;
-proc glimmix data = vitamin;
-class component;
-model amount = component;
-run;
+
+
+```{r}
+vitaminE$component_name <- c("bt","bt","bt","fat","fat","fat","fat")
+t.test(vitaminE$nutrition_amount_in_component ~ vitaminE$component_name)
 ```
-
-
-
 
 
 # Conclusion
