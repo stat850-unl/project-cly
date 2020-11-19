@@ -76,7 +76,7 @@ server <- function(input, output) {
       geom_col() +
       theme_bw() +
       coord_flip() +
-      ggtitle(paste("Amount of", input$nutrient_name, "Reports by Refused Component"))
+      ggtitle(paste("Amount of", input$nutrient_name_nutrient_unit, "Reports by Refused Component"))
   })
 }
 shinyApp(ui, server)
