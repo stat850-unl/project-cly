@@ -1,5 +1,5 @@
 ---
-title: "presentation"
+title: "850 Final Project Presentation"
 author: "Yutong Liu, Lin Zhao"
 date: "11/17/2020"
 output: powerpoint_presentation
@@ -9,27 +9,62 @@ output: powerpoint_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Outline
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Yutong
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+## Introduction
 
-## Slide with Bullets
+Yutong 
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## Introduction
 
-## Slide with R Output
+Yutong
+
+## Objective
+
+Yutong
+
+## Dataset description
+
+Lin
+
+## Result - Refuse food component
+
+Lin
 
 ```{r cars, echo = TRUE}
 summary(cars)
 ```
 
-## Slide with Plot
+## Result - Adjust units of nutrition amount
+
+Lin
 
 ```{r pressure}
 plot(pressure)
 ```
+
+
+## Result - Interactive graphics
+
+< ADD HYPERLINK HERE>
+
+Yutong
+
+## Result - Potential recyclable refuse
+
+Lin
+
+## Conclusion
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## References
+
+## THANK YOU
+
+
 
