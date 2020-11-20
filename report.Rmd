@@ -1,11 +1,11 @@
 ---
 title: |
     | STAT 850 Final Project
-    | *** OUR PROJECT TITLE ***
+    | Nutrition Recycalling Exploration on Inedible Food Components
 author: 'Yutong Liu, Lin Zhao'
 email: 'yutong.liu\@huskers\.unl\.edu, lzhao12\@huskers\.unl\.edu'
 abstract: |
-    Food waste usually ends up in landfills that will generates methane, a greenhouse gas that speed up the greenhouse effect. It is important to recycle the non-edible refuse food components. In this study, we did data visuallization and analysis to find refuse food components that can be potentially used as sources of nutrient extraction.
+    Food waste usually ends up in landfills that will generates methane, a greenhouse gas that speed up the greenhouse effect. It is important to recycle the inedible refuse food components. In this study, we did data visuallization and analysis to find refuse food components that can be potentially used as sources of nutrient extraction.
 
 bibliography: references.bib
 link-citations: yes
@@ -32,11 +32,11 @@ Food waste is a classic problem and a major contributor to greenhouse effect. Re
 
 Protein, fat, carbohydrate, inorganic salt, and vitamin are the five main nutrient categories in meat. Protein has an important biological significance to the human body. The protein of meat is the complete protein, which can provide all kinds of amino acids needed by the human body. The fat in meat can supply calories and essential fatty acids for the human body. The main components of fat include triglycerides, fatty acids, and a small amount of lecithin, cholesterol, free fatty acids, fat-soluble pigments, etc. [@fat] However, some nutrient components from fat are not worth-recycling, such as cholesterol that is harmful to patients with hyperlipidemia or atherosclerosis. The carbohydrate content in meat is relatively low, therefore, it is not the nutrient category used to extract nutrients. Meat contains many minerals such as iron, phosphorus, potassium, sodium, copper, zinc, magnesium, etc. The total inorganic salt content of meat food is about 0.6% ~ 1.1%, the inorganic salt content of lean meat is higher than that of fat meat, and the content of offal is higher than that of lean meat. The last important nutrient category is a vitamin. Meat contains vitamin B, a little bit of fat-soluble vitamins A, D, and water-soluble vitamin C. The liver of some animals is a critical source of vitamin B12 (promote the metabolism) and vitamin A (conducive to growth, maintenance of the immune system, and vision), therefore it is extensively used in extracting these vitamins. 
 
-In this study, we will explore the potential recyclable food components and the amount of different nutrients in those components in order to find a better way to recycle refuse food and save the environment. We aim at looking for a higher amount of discarded/non-edible food components in meat with a higher amount of beneficial nutrients so that it is possible to extract nutrients from recycled food components and decrease food waste. 
+In this study, we will explore the potential recyclable food components and the amount of different nutrients in those components in order to find a better way to recycle refuse food and save the environment. We aim at looking for a higher amount of discarded/inedible food components in meat with a higher amount of beneficial nutrients so that it is possible to extract nutrients from recycled food components and decrease food waste. 
 
 # Dataset Description
 
-[FoodData](https://fdc.nal.usda.gov/download-datasets.html) is an integrated database that provides food component and nutrient information. There are several tables in the original database, we only take three of them and merge the variables together by **fdc_id**, which is a unique permanent identifier of a food across tables. We would like to discover potential recycling of non-edible food component which has relatively higher nutrient.
+[FoodData](https://fdc.nal.usda.gov/download-datasets.html) is an integrated database that provides food component and nutrient information. There are several tables in the original database, we only take three of them and merge the variables together by **fdc_id**, which is a unique permanent identifier of a food across tables. We would like to discover potential recycling of inedible food component which has relatively higher nutrient.
 
 Three tables from the database are chosen for this project, one is *food_component.csv*, which contains several different constituent parts of a food like bone, tissues. This table provides information about components, including their weight and whether it is refuse or not. The second table is *food_nutrient.csv*, which provides nutrient value of a food. The third table is *nutrient.csv*. Nutrient is defined as the chemical constituent of a food (e.g. calcium, vitamin E) officially recognized as essential to human health.
 Nutrient table contains nutrient names, units and a unique code identifying a nutrient.
@@ -86,7 +86,7 @@ The variable *is_refuse* in original dataset has two levels: Y (is refuse) and N
 Therefore, we can assign all components into 2 groups: one is refuse, another is not refuse. 
 Since our ultimate goal is to recycle the refuse components and explore the potential value of them, we plot the data by variable *is_refuse* to see what kind of component is refuse. 
 
-```{r message = F, warning = F, out.width="0.6\\textwidth", out.height="0.6\\textwidth", fig.align="center"}
+```{r message = F, warning = F, out.width="0.5\\textwidth", out.height="0.5\\textwidth", fig.align="center"}
 ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
 ```
 
@@ -119,7 +119,7 @@ food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(
 
 ## Interactive graphics
 
-The nutrient amount and weighted nutrient amount grouped by component name can be obtained by selecting the specific nutrient name in refused components. In addition, the unit of each nutrient is shown following the selectable nutrient name. It provides the more intuitive evaluation for audience to observe the quantity difference within and among nutrients. The data visualization is carried out via [shiny applet--interactive graphics]().
+The nutrient amount and weighted nutrient amount grouped by component name can be obtained by selecting the specific nutrient name in refused components. In addition, the unit of each nutrient is shown following the selectable nutrient name. It provides the more intuitive evaluation for audience to observe the quantity difference within and among nutrients. The data visualization is carried out via [shiny applet--interactive graphics](https://lzhao.shinyapps.io/nutrition/).
 
 For each nutrient, the nutrient amount is the sum of nutrient quantity in each component, it determines the total nutrient amount that we could recycled from the specific component from different food. Since the components have different gram weight themselves, we calculated the weighted amount of each nutrient in order to allow them compare with each other.
 

@@ -83,7 +83,7 @@
 	\@setfontsize\normalsize{11}{17}%
 }
 \renewcommand\large{%
-	\@setfontsize\large{17}{22}
+	\@setfontsize\large{16}{21}
 }
 \renewcommand\small{%
 	\@setfontsize\small{8.5}{14}%
