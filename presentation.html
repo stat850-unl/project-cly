@@ -46,7 +46,7 @@ background-size: cover
 
 #Background --- Food Wastes
 
-Food wastes: 30 to 40% of the food supply. About 20% of meat is wasted.  
+Food wastes: 30% to 40% of the food supply. About 20% of meat is wasted.  
 
 
 
@@ -83,37 +83,55 @@ higher nutrient amount.
 4. Case Study --- Vitamin E
 
 ---
-background-image: url(http://www.pptbackgrounds.org/uploads/http--wallpapers-free-review-net-wallpapers-16-snoopy-dog-jpg-backgrounds-wallpapers.jpg)
-background-size: cover
-## Dataset description
+## Dataset description -- Original Dataset
 
-Lin
+| **id** | **fdc_id** | **name** | **pct_weight** | **is_refuse** | **gram_weight** | **data_points** |
+|--------|:----------:|---------:|---------------:|--------------:|----------------:|-----------------|
+|56885 | 320354 | Bone and connective tissue | 0.1 | Y | 1.3 | 2 |
+|56886 | 320354 | External fat | 1 | Y | 9.6 | 2 |
+
+&lt;br /&gt;
+
+| **id** | **fdc_id** | **nutrient_id** | **amount** |
+|--------|:----------:|----------------:|------------|
+|2219707 | 321358 | 1120 | 3 |
+|2219708 | 321358 | 1122 | 0 |
+
+&lt;br /&gt;
+
+|**id** | **name** | **unit_name** | **nutrient_nbr** | **rank** |
+|---|:----:|----------:|-------------:|------|
+|1002 | Nitrogen | G | 202 | 500 |
+|1003 | Protein | G | 203 | 600 |
+
+---
+## Dataset description -- Cleaned Dataset
+
+| **obs** | **component_name** | pct_weight | is_refuse | gram_weight | 
+|---------|:------------------:|-----------:|----------:|-------------|
+|   1     | Bone and cartilage |    32.4    |     Y     |     33.7    | 
+|   2     | Bone and cartilage |    32.4    |     Y     |     33.7    | 
+|   3     | Bone and cartilage |    32.4    |     Y     |     33.7    | 
+
+&lt;br /&gt;
+
+| **nutrient_name**             | **nutrient_amount** | **min** | **max** | **median** | **nutrient_unit** |
+|-------------------------------|:-------------------:|--------:|--------:|-----------:|-------------------|
+|   Cholesterol                 |        127          |   102   |   135   |     132    |         MG        |
+|   Fatty acids total trans     |         0.03        |    NA   |   NA    |     NA     |         G         |
+|   Fatty acids total saturated |         1.6         |    NA   |   NA    |     NA     |         G         |
 
 
 ---
 ## Result - Refused food component
 
-Lin
+&lt;img src="presentation_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
-
-```r
-ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
-```
-
-&lt;img src="presentation_files/figure-html/unnamed-chunk-2-1.png" width="0.5\textwidth" height="0.5\textwidth" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Result - Adjust units of nutrition amount
 
-Lin
-
-
-```r
-food_dataset &lt;- food_dataset %&gt;% filter(is_refuse == 'Y') %&gt;% group_by (nutrient_name)
-ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
-```
-
-&lt;img src="presentation_files/figure-html/unnamed-chunk-3-1.png" width="0.5\textwidth" height="0.5\textwidth" style="display: block; margin: auto;" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Result - Interactive graphics
@@ -129,19 +147,41 @@ Why **interactive graphics** ?
 ---
 ## Result - Potential recyclable refuse
 
-Lin
+
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+
 ---
 background-image: url(http://www.pptbackgrounds.org/uploads/http--wallpapers-free-review-net-wallpapers-16-snoopy-dog-jpg-backgrounds-wallpapers.jpg)
 background-size: cover
 ## Conclusion
 
+- Recyclable refuses: 
+  + **bone and connective tissue**, connective tissue, bone and cartilage
+  + **external fat**, **seam fat**, lip fat, skin and separable fat
+
+- Bone, tissue and fat are valuable resources of Vitamin E extraction.
+
+- By efficient utilization of refuse food components, it is possible to reduce waste food and contribute on environmental protection.
+
 
 ---
-background-image: url(http://www.pptbackgrounds.org/uploads/http--wallpapers-free-review-net-wallpapers-16-snoopy-dog-jpg-backgrounds-wallpapers.jpg)
-background-size: cover
 ## References
 
+[1] Agency, Environmental Protection (2018). “2018 Fact sheet”. In: Advancing Sustainable Materials
+Management: Facts and Figures Report. United States.
 
+[2] Health Office of Dietary Supplements, NIH: National Institutes of (2015). “Vitamin E”. In: medlineplus.
+United States. URL:[https://medlineplus.gov/vitamine.html]( https://medlineplus.gov/vitamine.html).
+
+[3] Public Health, Harvard School of (n.d.). “Vitamin E”. In: The Nutrition Source. United States. URL:
+[https://www.hsph.harvard.edu/nutritionsource/vitamin-e/](https://www.hsph.harvard.edu/nutritionsource/vitamin-e/).
+
+[4] USDA (2020). “FoodData Central”. In: Foundation Foods. United States.
+
+[5] Williams, Christine M. (2000). “Dietary fatty acids and human health”. In: Annales de zootechnie.
+EDP Sciences.
 
 ---
 background-image: url(http://www.pptbackgrounds.org/uploads/animal-friendship-backgrounds-wallpapers.jpg)
