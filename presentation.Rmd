@@ -21,8 +21,9 @@ library(ggplot2)
 library(tidyverse)
 ```
 
-background-image: url(http://www.pptbackgrounds.org/uploads/http--wallpapers-free-review-net-wallpapers-16-snoopy-dog-jpg-backgrounds-wallpapers.jpg)
-background-size: cover
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 # Outline
 
 - Background
@@ -41,11 +42,13 @@ background-size: cover
 - Reference
 
 ---
-
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 #Background --- Food Wastes
 
-Food wastes: 30% to 40% of the food supply. About 20% of meat is wasted.  
-
+Food waste is a classic problem and the main contributor to the greenhouse effect. Research from the U.S. Environmental Protection Agency (EPA) shows that of the 136 million tons landfilled, almost 22% was food.
+Meat squander: abount 20%
 
 
 **Harvest**   <img src="figure/harvest.png" width="200" height="150" align="center" />  **Transportation** <img src="figure/transportation.png" width="200" height="150" align="center" />   
@@ -54,7 +57,9 @@ Food wastes: 30% to 40% of the food supply. About 20% of meat is wasted.
 **Production**  <img src="figure/production.png" width="200" height="150" align="center" />**Consumption**   <img src="figure/consumption.png" width="200" height="150" align="center" />   
 
 ---
-
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Background --- Main Nutrient Components
 
 <center>
@@ -62,12 +67,14 @@ Food wastes: 30% to 40% of the food supply. About 20% of meat is wasted.
 </center>
 
 ---
-background-image: url(http://www.pptbackgrounds.org/uploads/http--wallpapers-free-review-net-wallpapers-16-snoopy-dog-jpg-backgrounds-wallpapers.jpg)
-background-size: cover
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 
 ## Objective
 
-The **overall objective** of this project is to look for a higher amount of discarded/non-edible food components in meat with a higher amount of beneficial nutrients, in order to provide a research idea to extract nutrients from recycled food components to decrease food waste.     
+The **overall objective** of this project is to look for a higher amount of discarded/non-edible food components in meat with a higher amount of beneficial nutrients, in order to provide a research idea to extract nutrients from recycled food components to decrease food waste.  
+
 The **specific objectives** are:  
 
 1. Looking for potential recyclable food components.   
@@ -83,6 +90,9 @@ higher nutrient amount.
 4. Case Study --- Vitamin E
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Dataset description -- Original Dataset
 
 <center>
@@ -113,6 +123,9 @@ nutrient.csv
 |1003 | Protein | G | 203 | 600 |
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Dataset description -- Cleaned Dataset
 
 <center>
@@ -135,6 +148,9 @@ food_dataset.csv
 
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Result - Refused food component
 
 ```{r echo = F,message = F, warning = F,dpi = 300, fig.width=10 ,fig.align="center"}
@@ -153,6 +169,9 @@ ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight =
 
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Result - Adjust units of nutrition amount
 
 ```{r echo = F,message = F, warning = F,dpi = 300, fig.width=10 ,fig.align="center"}
@@ -161,6 +180,9 @@ ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weig
 ```
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Result - Interactive graphics
 
 The clear data visualization is carried out via [shiny applet---interactive graphics](https://lzhao.shinyapps.io/nutrition/)   
@@ -172,6 +194,9 @@ Why **interactive graphics** ?
 <img src="figure/interactive.png" width="300" height="200" align="center" /> 
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Result - Potential recyclable refuse
 
 
@@ -202,8 +227,9 @@ ggplot(vitaminE) +
 
 
 ---
-background-image: url(http://www.pptbackgrounds.org/uploads/http--wallpapers-free-review-net-wallpapers-16-snoopy-dog-jpg-backgrounds-wallpapers.jpg)
-background-size: cover
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## Conclusion
 
 - Recyclable refuses: 
@@ -216,6 +242,9 @@ background-size: cover
 
 
 ---
+background-image: url(https://cdn.freelogovectors.net/wp-content/uploads/2019/02/university-of-nebraska-lincoln-Unl.png)
+background-position: right 30px top 20px
+background-size: 20%
 ## References
 
 [1] Agency, Environmental Protection (2018). “2018 Fact sheet”. In: Advancing Sustainable Materials
@@ -233,8 +262,6 @@ United States. URL:[https://medlineplus.gov/vitamine.html]( https://medlineplus.
 EDP Sciences.
 
 ---
-background-image: url(http://www.pptbackgrounds.org/uploads/animal-friendship-backgrounds-wallpapers.jpg)
-background-size: cover
 class: inverse, center, middle
 
 # Thank You!
