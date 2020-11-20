@@ -5,9 +5,10 @@ title: |
 author: 'Yutong Liu, Lin Zhao'
 email: 'yutong.liu\@huskers\.unl\.edu, lzhao12\@huskers\.unl\.edu'
 abstract: |
-    This is our abstract
-#bibliography: references.bib
-#link-citations: yes
+    Food waste usually ends up in landfills that will generates methane, a greenhouse gas that speed up the greenhouse effect. It is important to recycle the non-edible refuse food components. In this study, we did data visuallization and analysis to find refuse food components that can be potentially used as sources of nutrient extraction.
+
+bibliography: references.bib
+link-citations: yes
 output: 
     pdf_document:
         template: jdf-template.pandoc
@@ -27,11 +28,11 @@ library(tidyverse)
 
 # Introduction
 
-According to statistics from the U.S. Department of Agriculture, food waste accounts for 30 to 40% of the food supply in the United States each year. The process of harvest, transportation, and production results in most food waste. Besides, food wasted by customers in the consumption process also accounts for a large part. According to the dataset of the wasted food, about 20% of meat is wasted. Therefore, exploring which components can be recycled, which nutrients are worth-recycling, and what is the exact recycling-amount of specific nutrients are the three main questions we are interested in. 
+Food waste is a classic problem and a major contributor to greenhouse effect. Research from U.S. Environmental Protection Agency (EPA) [@research2018] shows that of the 136 million tons landfilled, almost 22% was food. The process of harvest, transportation, and production results in most food waste. Besides, food wasted by customers in the consumption process also accounts for a large part. According to the dataset of the wasted food, about 20% of meat is wasted. [@data2020] 
 
-Protein, fat, carbohydrate, inorganic salt, and vitamin are the five main nutrient categories in meat. Protein has an important biological significance to the human body. The protein of meat is the complete protein, which can provide all kinds of amino acids needed by the human body. The fat in meat can supply calories and essential fatty acids for the human body. The main components of fat include triglycerides, fatty acids, and a small amount of lecithin, cholesterol, free fatty acids, fat-soluble pigments, etc. However, some nutrient components from fat are not worth-recycling, such as cholesterol that is harmful to patients with hyperlipidemia or atherosclerosis. The carbohydrate content in meat is relatively low, therefore, it is not the nutrient category used to extract nutrients. Meat contains many minerals such as iron, phosphorus, potassium, sodium, copper, zinc, magnesium, etc. The total inorganic salt content of meat food is about 0.6-1.1%, the inorganic salt content of lean meat is higher than that of fat meat, and the content of offal is higher than that of lean meat. The last important nutrient category is a vitamin. Meat contains vitamin B, a little bit of fat-soluble vitamins A, D, and water-soluble vitamin C. The liver of some animals is a critical source of vitamin B12 (promote the metabolism) and vitamin A (conducive to growth, maintenance of the immune system, and vision), therefore it is extensively used in extracting these vitamins.
+Protein, fat, carbohydrate, inorganic salt, and vitamin are the five main nutrient categories in meat. Protein has an important biological significance to the human body. The protein of meat is the complete protein, which can provide all kinds of amino acids needed by the human body. The fat in meat can supply calories and essential fatty acids for the human body. The main components of fat include triglycerides, fatty acids, and a small amount of lecithin, cholesterol, free fatty acids, fat-soluble pigments, etc. [@fat] However, some nutrient components from fat are not worth-recycling, such as cholesterol that is harmful to patients with hyperlipidemia or atherosclerosis. The carbohydrate content in meat is relatively low, therefore, it is not the nutrient category used to extract nutrients. Meat contains many minerals such as iron, phosphorus, potassium, sodium, copper, zinc, magnesium, etc. The total inorganic salt content of meat food is about 0.6% ~ 1.1%, the inorganic salt content of lean meat is higher than that of fat meat, and the content of offal is higher than that of lean meat. The last important nutrient category is a vitamin. Meat contains vitamin B, a little bit of fat-soluble vitamins A, D, and water-soluble vitamin C. The liver of some animals is a critical source of vitamin B12 (promote the metabolism) and vitamin A (conducive to growth, maintenance of the immune system, and vision), therefore it is extensively used in extracting these vitamins. 
 
-Our project is aimed to look for a higher amount of discarded/non-edible food components in meat with a higher amount of beneficial nutrients, in order to provide a research hypothesis to extract nutrients from recycled food components to decrease food waste. 
+In this study, we will explore the potential recyclable food components and the amount of different nutrients in those components in order to find a better way to recycle refuse food and save the environment. We aim at looking for a higher amount of discarded/non-edible food components in meat with a higher amount of beneficial nutrients so that it is possible to extract nutrients from recycled food components and decrease food waste. 
 
 # Dataset Description
 
@@ -85,7 +86,7 @@ The variable *is_refuse* in original dataset has two levels: Y (is refuse) and N
 Therefore, we can assign all components into 2 groups: one is refuse, another is not refuse. 
 Since our ultimate goal is to recycle the refuse components and explore the potential value of them, we plot the data by variable *is_refuse* to see what kind of component is refuse. 
 
-```{r message = F, warning = F, out.width="0.5\\textwidth", out.height="0.5\\textwidth", fig.align="center"}
+```{r message = F, warning = F, out.width="0.6\\textwidth", out.height="0.6\\textwidth", fig.align="center"}
 ggplot(food_dataset)+ geom_bar (aes(x= is_refuse, fill =component_name, weight = nutrition_amount_in_component))
 ```
 
@@ -98,7 +99,7 @@ It is easy to see that all of tissues and fats are refuses. Fat, tissue and cart
 In order to run statistical analysis on the nutrition amount, it is necessary to have uniform units for all components. First of all, we would like to know how many units exist in dataset and which one is the most commonly used.
 
 
-```{r message = F, warning = F, out.width="0.5\\textwidth", out.height="0.5\\textwidth", fig.align="center"}
+```{r message = F, warning = F, fig.width=12, out.width="0.9\\textwidth", out.height="0.7\\textwidth", fig.align="center"}
 food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
 ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
 ```
@@ -118,15 +119,15 @@ food_dataset <- food_dataset %>% replace(., "nutrient_unit", c(unit)) %>% unite(
 
 ## Interactive graphics
 
-The nutrient amount and weighted nutrient amount grouped by component name can be obtained by selecting the specific nutrient name in refused components. In addition, the unit of each nutrient is shown following the selectable nutrient name. It provides the more intuitive evaluation for audience to observe the quantity difference within and among nutrients. The data visualization is carried out via [shiny applet---interactive graphics]().
+The nutrient amount and weighted nutrient amount grouped by component name can be obtained by selecting the specific nutrient name in refused components. In addition, the unit of each nutrient is shown following the selectable nutrient name. It provides the more intuitive evaluation for audience to observe the quantity difference within and among nutrients. The data visualization is carried out via [shiny applet--interactive graphics]().
 
-For each nutrient, the nutrient amount is the sum of nutrient quantity in each component, it determines the total nutrient amount that we could recycled from the specific component from different food; the weighted nutrient amount is the average of 
+For each nutrient, the nutrient amount is the sum of nutrient quantity in each component, it determines the total nutrient amount that we could recycled from the specific component from different food. Since the components have different gram weight themselves, we calculated the weighted amount of each nutrient in order to allow them compare with each other.
 
-From the interactive graphics, we can see that the food component *Separable Lean* contains the highest amount for all nutrients, due to it exists in many food wastes, therefore, it is a very valuable recycling food component that we will explore later for nutrient extraction and utilize. 
+From the interactive graphics, we can see that the food component *Separable Lean* contains the highest amount for all nutrients, due to it exists in many food wastes. However, it is not a refuse food component. *Seam fat*, *external fat*, *bone and connective tissue* are refuse components that have high amount of different nutrient. These are very valuable recycling food components that we will explore later for nutrient extraction and utilize. 
 
 ## Potential recyclable refuse
 
-Vitamins are substances that are needed by human body to grow and develop. Vitamin E an antioxidant, which plays a role in human immune system and metabolic processes. It is a fat-soluble vitamin with several forms, but alpha-tocopherol is the only one used by the human body.  Alpha-tocopherol is also the form that examined in this datset. 
+Vitamins are substances that are needed by human body to grow and develop [@vitaminE]. Vitamin E an antioxidant, which plays a role in human immune system and metabolic processes. It is a fat-soluble vitamin with several forms, but alpha-tocopherol is the only one used by the human body. [@vitaminE2] Alpha-tocopherol is also the form that examined in this data set. 
 
 The Recommended Dietary Allowance (RDA) for vitamin E for males and females ages 14 years and older is 15 mg daily, including women who are pregnant. Lactating women need slightly more at 19 mg daily.
 
@@ -164,11 +165,8 @@ t.test(vitaminE$nutrition_amount_in_component ~ vitaminE$component_name)
 
 # Conclusion
 
-Conclusion goes here.
+In this project, we analyzed the food data to explore potential recyclable refuse of food components. We found out that bone and connective tissue, connective tissue, external fat, seam fat, bone and cartilage, lip fat, skin and separable fat are good sources of waste food recycling. Among all those food components, *Seam fat*, *external fat*, *bone and connective tissue* have larger amount of different nutrient, which can be easily used as materials that can extract different kinds of nutrient from. Vitamin E is an important nutrient that support our body health. By conducting T-test on *bone/tissue* and *fat* components, we conclude that there is no difference between amount of Vitamin E between these two groups of components, which indicates that they are valuable resources of Vitamin E extraction. By efficient utilization of refuse food components, it is possible to reduce waste food and contribute on environmental protection.
 
 # References
 
-Benefits of Vitamin E: [https://medlineplus.gov/vitamine.html](https://medlineplus.gov/vitamine.html)
-
-Recomanded daily Vitamin E amounts: [https://www.hsph.harvard.edu/nutritionsource/vitamin-e/](https://www.hsph.harvard.edu/nutritionsource/vitamin-e/)
 
