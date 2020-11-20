@@ -104,7 +104,7 @@ food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient
 ggplot(food_dataset)+ geom_bar(aes(x= component_name, fill =component_name, weight = nutrition_amount_in_component)) + coord_flip() + facet_wrap(~nutrient_unit)
 ```
 
-From the plot above, We can see that the most common unit used for nutrition amount in the dataset is MG and KJ. We will adjust the mass unit to G, the energy unit to KJ. After adjustment, there exists mass unit *G*, energy unit *KJ*, and vitamin unit *IU*.  
+From the plot above, We can see that there are 6 different units for nutrition amount, including *G*, *IU*, *KCAL*, *KJ*, *MG*, *UG*. The most common units used for nutrition amount are G and KJ in scientific research. We will adjust the mass unit to G, the energy unit to KJ. After adjustment, there exists mass unit *G*, energy unit *KJ*, and vitamin D unit *IU*.  
 
 Mass unit adjustment: 1 g = 1000 mg = 1000000 ug
 
@@ -150,7 +150,7 @@ ggplot(vitaminE) +
                               'Seam fat',
                               'Skin and \n separable fat')) +
   theme(axis.text=element_text(size=12), axis.title=element_text(size=14,face="bold")) +
-  xlab("Component Name") + ylab("Nutrient Amount (G)")
+  xlab("Component Name") + ylab("Vitamin E Amount (G)")
 ```
 
 There are two sources of Vitamin E: one is bone/tissue, including *Bone and cartilage*, *Bone and connective tissue*, *Connective tissue*; another is fat, including *external fat*, *lip fat*, *seam fat*, and *skin and separable fat*. We can see that fat generally contains a higher amount of Vitamin E. We run a t-test on components to test the visual evidence statistically. The null hypothesis is there is no significant difference between *bone/tissue* and *fat*. The test result shows that the p-value is 0.8238, so we fail to reject the null hypothesis and conclude that there is no difference between *bone/tissue* and *fat* components.

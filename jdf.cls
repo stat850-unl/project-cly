@@ -29,10 +29,10 @@
 % The text block is 5.5x8.5in, which is exactly 1/2 the page size, divided lengthwise
 	\RequirePackage[
 		\papersize,
-		top=1in,
-		bottom=0.8in, 
-		left=1in, 
-		right=1in,
+		top=1.1in,
+		bottom=1in, 
+		left=1.1in, 
+		right=1.1in,
 		footskip=0.2in, % Space from the bottom margin to the baseline of the footer
 		%showframe, % Uncomment to show how the type block is set on the page
 	]{geometry}
@@ -124,13 +124,13 @@
 % Abstract
 \renewenvironment{abstract}{%
 	\begin{center}
-		\begin{adjustwidth}{0.5in}{0.5in}
+		\begin{adjustwidth}{0.7in}{0.7in}
 			\normalfont%
 			\textbf{\textit{Abstract\hairsp—\hairsp}}\ignorespaces
 			}
 			{%
 		\end{adjustwidth}
-		\vspace{-11pt}
+		\vspace{-3pt}
 	\end{center}
 }
 
@@ -143,13 +143,13 @@
 	{\normalfont\liningnums\lsstylehelp{60}\bfseries}
 	{\thesection}{0.333em} % Space between the title and label
 	{\MakeUppercase}
-\titlespacing*{\section}{0pt}{2.5pt}{0pt}
+\titlespacing*{\section}{1pt}{3pt}{0pt}
 
 % Heading 2
 \titleformat{\subsection}
 	{\normalfont\bfseries}
 	{\thesubsection}{0.4em}{}
-\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{1pt}{1pt}{0pt}
 
 % Heading 3
 \titleformat{\subsubsection}
