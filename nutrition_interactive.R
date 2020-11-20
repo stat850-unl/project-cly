@@ -12,6 +12,8 @@ col_names <- c("component_name","pct_weight","is_refuse","gram_weight","nutrient
 colnames(food_dataset) <- col_names
 food_dataset <- food_dataset[,c(1,2,3,4,9,5,6,7,8,10)]
 food_dataset <- food_dataset %>% mutate(nutrition_amount_in_component= nutrient_amount/100*gram_weight)  
+food_dataset <- food_dataset %>% filter(is_refuse == 'Y') %>% group_by (nutrient_name)
+
 
 if ( food_dataset$nutrient_unit == 'MG') {
   food_dataset$nutrition_amount_in_component = food_dataset$nutrition_amount_in_component/ 1000
