@@ -47,7 +47,7 @@ background-position: right 30px top 20px
 background-size: 20%
 #Background --- Food Wastes
 
-Food waste is a classic problem and the main contributor to the greenhouse effect. Research from the U.S. Environmental Protection Agency (EPA) shows that of the 136 million tons landfilled, almost 22% was food.
+Food waste is a classic problem and the main contributor to the greenhouse effect. Research from the U.S. Environmental Protection Agency (EPA) shows that of the 136 million tons landfilled, almost 22% was food.   
 Meat squander: abount 20%
 
 
@@ -187,7 +187,7 @@ background-size: 20%
 
 The clear data visualization is carried out via [shiny applet---interactive graphics](https://lzhao.shinyapps.io/nutrition/)   
 
-The food component **Separable Lean** contains the highest amount for all nutrients, due to it exists in many food wastes, therefore, it is a very valuable recycling food component that we will explore later for nutrient extraction and utilize.   
+we can see that the food component *Bone and connective tissue* contains the highest total amount for all nutrients, due to it exists in many food wastes. *Seam fat*, *external fat*, and *bone and connective tissue* are three main refuse components with the higher weighted nutrient amount.
 
 Why **interactive graphics** ?     
    
